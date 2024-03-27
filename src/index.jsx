@@ -3,18 +3,10 @@ import { render } from "solid-js/web";
 import { lazy } from "solid-js";
 import { Router, Route } from "@solidjs/router";
 import App from "./App";
-const RouteGuard = lazy(() => import("./router/RouteGuard"));
-const Home = lazy(() => import("./pages/home"));
-const Login = lazy(() => import("./pages/login"));
-const root = document.getElementById("root");
+
 
 render(
-  () => (
-    <Router root={App}>
-    
-      {/* <Route path="/" component={RouteGuard}> </Route> */}
-        <Route path="/home" component={Home} />     
-    </Router>
-  ),
+  () =>    
+  <App/>,
   root
 );

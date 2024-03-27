@@ -1,6 +1,6 @@
 /* @refresh reload */
 import { render } from "solid-js/web";
-
+import { Router, Route } from "@solidjs/router";
 import App from "./App";
 const RouteGuard = lazy(() => import("./router/RouteGuard"));
 const Home = lazy(() => import("./pages/home"));

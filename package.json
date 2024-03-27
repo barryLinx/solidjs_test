@@ -9,6 +9,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@popperjs/core": "^2.11.8",
+    "@solidjs/router": "^0.13.1",
+    "bootstrap": "^5.3.3",
+    "sass": "^1.72.0",
     "solid-js": "^1.8.15"
   },
   "devDependencies": {

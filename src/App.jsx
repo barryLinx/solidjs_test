@@ -1,35 +1,144 @@
-import { createSignal } from 'solid-js'
-import solidLogo from './assets/solid.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { createSignal, createEffect, For } from "solid-js";
+import { useNavigate } from "@solidjs/router";
+import solidLogo from "./assets/solid.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = createSignal(0)
+  const [dailySales, setDailySales] = createSignal({});
+  const navigate = useNavigate();
 
+  const payEnum = {
+    1: "現金",
+    2: "信用卡",
+    3: "電子支付",
+  };
+
+  const statusEnum = {
+    1: "完成",
+    2: "等待中",
+    3: "取消",
+  };
+
+  const statusColorEnum = {
+    1: "text-bg-success",
+    2: "text-bg-warning",
+    3: "text-bg-danger",
+  };
+
+  createEffect(async () => {
+    if (!localAccessToken()) {
+      return;
+    }
+    const response = await customFetch("api/getSalesData", {
+      method: "get",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    console.log("Home response", response);
+
+    const jsonData = await response.json();
+    console.log("Home jsonData", jsonData);
+    setDailySales(jsonData);
+  });
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} class="logo" alt="Vite logo" />
-        </a>
-        <a href="https://solidjs.com" target="_blank">
-          <img src={solidLogo} class="logo solid" alt="Solid logo" />
-        </a>
+    <div
+      class=" col-md-11 position-relative vh-100"
+      style="background-color: #EEEDF3;"
+    >
+      <div class="row mt-4 g-3">
+        <div class="col-md-4">
+          <div class="d-flex p-3 justify-content-between align-items-center bg-light">
+            <div class="fw-bold text-primary">
+              <h2 class="">{formatNumber(dailySales()?.daily?.customer)}</h2>
+              <span class="text-secondary">每日顧客</span>
+            </div>
+            <div class="fs-1 text-primary">
+              <i class="fas fa-users"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="d-flex p-3 justify-content-between align-items-center bg-light">
+            <div class="fw-bold text-primary">
+              <h2 class="">{formatNumber(dailySales()?.daily?.sales)}</h2>
+              <span class="text-secondary fw-">銷售數量</span>
+            </div>
+            <div class="fs-1 text-primary">
+              <i class="fas fa-shopping-cart"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="d-flex p-3 justify-content-between align-items-center bg-light">
+            <div class="fw-bold text-primary">
+              <h2 class="">
+                {formatNumber(dailySales()?.daily?.volumeOfBusiness)}
+              </h2>
+              <span class="text-secondary ">當日營業額</span>
+            </div>
+            <div class="fs-1 text-primary">
+              <i class="fas fa-dollar-sign"></i>
+            </div>
+          </div>
+        </div>
       </div>
-      <h1>Vite + Solid</h1>
-      <div class="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count()}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      <div className="row mt-4">
+        <div class="p-3 d-flex flex-column justify-content-between">
+          <div class="p-3 d-flex justify-content-between bg-light">
+            <h2>當日銷售項目</h2>
+            {/* <button class="btn btn-outline-primary">查看全部</button> */}
+          </div>
+          <div class="scorllbar" style="height:600px;">
+            <table class=" table table-hover table-light p-3 sticky-top top-0">
+              <thead class="position-sticky top-0">
+                <tr class="bg-primary">
+                  <th class="fs-3 text-primary" scope="col">
+                    名稱
+                  </th>
+                  <th class="fs-3 text-primary" scope="col">
+                    價錢
+                  </th>
+                  <th class="fs-3 text-primary" scope="col">
+                    付款方式
+                  </th>
+                  <th class="fs-3 text-primary" scope="col">
+                    狀況
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <For each={dailySales()?.dailySales}>
+                  {(sales, i) => (
+                    <>
+                      <tr>
+                        <th class="fs-4" scope="row">
+                          {sales.name}
+                        </th>
+                        <td class="fs-4 fw-bold">{sales.price}</td>
+                        <td class="fs-4 fw-bold">{payEnum[sales.payMethed]}</td>
+                        <td>
+                          <span
+                            class={`fs-5 badge ${
+                              statusColorEnum[sales.status]
+                            }`}
+                          >
+                            {statusEnum[sales.status]}
+                          </span>
+                        </td>
+                      </tr>
+                    </>
+                  )}
+                </For>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
-      <p class="read-the-docs">
-        Click on the Vite and Solid logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;

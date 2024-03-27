@@ -10,7 +10,7 @@ const RouteGuard = (props) => {
   const { localAccessToken, userName } = authStore;
 
   //如果用户未登錄，重定向到login頁面
-  createMemo(() => {
+  createEffect(() => {
     //沒有 localAccessToken 就跳轉到 login頁面
     // console.log("redirect", "redirect");
     //console.log("localAccessToken", localAccessToken);

@@ -1,5 +1,5 @@
 import { createSignal, createEffect } from "solid-js";
-import { redirect, useNavigate } from "@solidjs/router";
+import {  useNavigate } from "@solidjs/router";
 import authStore from "../store/authStore";
 import customFetch from "../helper/customFetch";
 

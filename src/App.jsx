@@ -10,7 +10,9 @@ function App() {
     <>
       <Router>
         <Route path="/login" component={Login} />
-        <RouteGuard path="/" component={Home} />
+        <Route path="/" component={RouteGuard} >
+        <Route path="/home" component={Home} />
+        </Route>
       </Router>
     </>
   );

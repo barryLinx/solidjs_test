@@ -3,7 +3,6 @@ import { createSignal, createEffect, For } from "solid-js";
 import formatNumber from "./helper/formatNumber";
 import customFetch from "./helper/customFetch";
 
-
 function App() {
   const [dailySales, setDailySales] = createSignal({});
   //const navigate = useNavigate();

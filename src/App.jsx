@@ -1,8 +1,8 @@
 import { createSignal, createEffect, For } from "solid-js";
 import { useNavigate } from "@solidjs/router";
-import solidLogo from "./assets/solid.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
+import formatNumber from "../helper/formatNumber";
+import customFetch from "../helper/customFetch";
+
 
 function App() {
   const [dailySales, setDailySales] = createSignal({});

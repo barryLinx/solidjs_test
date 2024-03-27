@@ -1,6 +1,6 @@
 // src/components/ProtectedRoute.js
 import { createEffect, createMemo } from "solid-js";
-import Sidebars from "../layout/sidebars";
+// import Sidebars from "../layout/sidebars";
 import { useNavigate } from "@solidjs/router";
 import authStore from "../store/authStore";
 // import { Toaster } from 'solid-toast';
@@ -24,7 +24,7 @@ const RouteGuard = (props) => {
     <>
       <div class="container">
         <div className="row overflow-x-hidden overflow-y-hidden">
-          <Sidebars />
+          {/* <Sidebars /> */}
           {/* <Show when={localAccessToken()} fallback={navigate("/login", { replace: true })}> </Show> */}
           {props.children}
           

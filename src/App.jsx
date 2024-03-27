@@ -1,12 +1,12 @@
 import { createSignal, createEffect, For } from "solid-js";
-import { useNavigate } from "@solidjs/router";
+//import { useNavigate } from "@solidjs/router";
 import formatNumber from "./helper/formatNumber";
 import customFetch from "./helper/customFetch";
 
 
 function App() {
   const [dailySales, setDailySales] = createSignal({});
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
   const payEnum = {
     1: "現金",

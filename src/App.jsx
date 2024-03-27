@@ -1,19 +1,17 @@
 import { Router, Route } from "@solidjs/router";
-import { lazy } from "solid-js";
+//import { lazy } from "solid-js";
 
-const RouteGuard = lazy(() => import("./router/RouteGuard"));
-const Home = lazy(() => import("./pages/home"));
-const Login = lazy(() => import("./pages/login"));
-
-function App() {
+function App(props) {
   return (
     <>
-      <Router>
-        <Route path="/login" component={Login} />
-        <Route path="/" component={RouteGuard} >
-        <Route path="/home" component={Home} />
-        </Route>
-      </Router>
+      <div class="container">
+        <div className="row overflow-x-hidden overflow-y-hidden">
+          {/* <Sidebars /> */}
+          {/* <Show when={localAccessToken()} fallback={navigate("/login", { replace: true })}> </Show> */}
+          {props.children}
+        </div>
+        {/* <Toaster/> */}
+      </div>
     </>
   );
 }

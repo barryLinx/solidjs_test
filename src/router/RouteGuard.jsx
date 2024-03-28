@@ -16,7 +16,7 @@ const RouteGuard = (props) => {
     //console.log("localAccessToken", localAccessToken);
     if (!localAccessToken()) {
       navigate("/login", { replace: true });
-      //return;
+      return;
     }
   });
 

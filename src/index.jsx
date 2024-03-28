@@ -8,8 +8,4 @@ import "@/scss/bootstrap.scss";
 import "@/helper/bootstrap.js";
 const root = document.getElementById("root");
 
-render(
-  () =>    
-  <App/>,
-  root
-);
+render(() => <App />, root);

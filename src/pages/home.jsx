@@ -7,7 +7,7 @@ import customFetch from "../helper/customFetch";
 function Home() {
   const { localAccessToken, userName ,setLocalAccessToken} = authStore;
   const [dailySales, setDailySales] = createSignal({});
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
   const payEnum = {
     1: "現金",

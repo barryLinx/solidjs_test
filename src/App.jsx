@@ -3,8 +3,8 @@ import { Router, Route } from "@solidjs/router";
 const RouteGuard = lazy(() => import("./router/RouteGuard"));
 const Home = lazy(() => import("./pages/home"));
 const Login = lazy(() => import("./pages/login"));
-const root = document.getElementById("root");
-function App(props) {
+
+function App() {
   return (
     <>
      <Login/>

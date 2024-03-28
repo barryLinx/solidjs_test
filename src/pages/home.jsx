@@ -29,9 +29,9 @@ function Home() {
 
   createEffect(async () => {
     
-      if(!localAccessToken()){
-        return;
-      }
+      // if(!localAccessToken()){
+      //   return;
+      // }
       const response = await customFetch("api/getSalesData", {
         method: "get",
         headers: {

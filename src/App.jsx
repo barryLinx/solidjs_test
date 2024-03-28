@@ -7,7 +7,7 @@ const Login = lazy(() => import("./pages/login"));
 function App() {
   return (
     <>
-     <Login/>
+     <Home/>
     </>
   );
 }

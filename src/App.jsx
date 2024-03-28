@@ -9,8 +9,8 @@ function App() {
   return (
     <>
       <Router>
-        <Route path="/" component={RouteGuard}> </Route>
-        <Route path="/home" component={Home}></Route>       
+        <Route path="/home" component={Home}> </Route>
+        <Route path="/" component={RouteGuard}></Route>       
         <Route path="/login" component={Login}></Route>
       </Router>
     </>
